@@ -1,24 +1,14 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <streambuf>
 #include "monkey/lexer.hpp"
-
-template <class T>
-unsigned int arrlen(T *arr)
-{
-  return *(&arr + 1) - arr;
-}
 
 int main()
 {
-  const std::string input = "let     five = 5;\n"
-                            "let ten = 10;\n"
-                            "\n"
-                            "let add = fn(x,y) {\n"
-                            "    x + y;\n"
-                            "};\n"
-                            "\n"
-                            "let result = add(five,ten);\n";
-
-  std::cout << input;
+  std::ifstream t("test.monkey");
+  std::string input((std::istreambuf_iterator<char>(t)),
+                    std::istreambuf_iterator<char>());
 
   token out[] = {
       {LET, "let"},
@@ -66,7 +56,7 @@ int main()
 
   lexer l = build_lexer(input);
 
-  for (int i = 0; i < arrlen(out); i++)
+  for (int i = 0; i < 36; i++)
   {
     token expected = out[i];
     token tok = l.next_token();
