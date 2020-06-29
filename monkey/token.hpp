@@ -22,6 +22,13 @@ const token_type INT = "INT";
 // Operators
 const token_type ASSIGN = "=";
 const token_type PLUS = "+";
+const token_type MINUS = "-";
+const token_type BANG = "!";
+const token_type SLASH = "/";
+const token_type ASTERISK = "*";
+
+const token_type LT = "<";
+const token_type GT = ">";
 
 // Delimiters
 const token_type COMMA = ",";

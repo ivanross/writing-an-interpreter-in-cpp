@@ -52,11 +52,26 @@ int main()
       {IDENT, "ten"},
       {RPAREN, ")"},
       {SEMICOLON, ";"},
+
+      {BANG, "!"},
+      {MINUS, "-"},
+      {SLASH, "/"},
+      {ASTERISK, "*"},
+      {INT, "5"},
+      {SEMICOLON, ";"},
+
+      {INT, "5"},
+      {LT, "<"},
+      {INT, "10"},
+      {GT, ">"},
+      {INT, "5"},
+      {SEMICOLON, ";"},
+
   };
 
   lexer l = build_lexer(input);
 
-  for (int i = 0; i < 36; i++)
+  for (int i = 0; i < 48; i++)
   {
     token expected = out[i];
     token tok = l.next_token();

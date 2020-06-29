@@ -48,6 +48,24 @@ token lexer::next_token()
   case '+':
     tok = new_token(PLUS, ch);
     break;
+  case '-':
+    tok = new_token(MINUS, ch);
+    break;
+  case '*':
+    tok = new_token(ASTERISK, ch);
+    break;
+  case '/':
+    tok = new_token(SLASH, ch);
+    break;
+  case '!':
+    tok = new_token(BANG, ch);
+    break;
+  case '<':
+    tok = new_token(LT, ch);
+    break;
+  case '>':
+    tok = new_token(GT, ch);
+    break;
   case ',':
     tok = new_token(COMMA, ch);
     break;
