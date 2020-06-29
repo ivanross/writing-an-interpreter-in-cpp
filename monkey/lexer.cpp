@@ -8,9 +8,38 @@ void lexer::read_char()
   position = read_position++;
 }
 
+void lexer::skip_whitespace()
+{
+  while (is_whitespace(ch))
+    read_char();
+}
+
+token_literal lexer::read_identifier()
+{
+  int pos = position;
+  while (is_letter(ch))
+    read_char();
+
+  std::string ident(&input[pos], &input[position]);
+  return ident;
+}
+
+token_literal lexer::read_number()
+{
+  int pos = position;
+  while (is_number(ch))
+    read_char();
+
+  std::string ident(&input[pos], &input[position]);
+  return ident;
+}
+
 token lexer::next_token()
 {
   token tok;
+
+  skip_whitespace();
+
   switch (ch)
   {
   case '=':
@@ -42,7 +71,21 @@ token lexer::next_token()
     tok.literal = "";
     break;
   default:
-    return new_token(ILLEGAL, ch);
+    if (is_letter(ch))
+    {
+      tok.literal = read_identifier();
+      tok.token = lookup_ident(tok.literal);
+      return tok;
+    }
+    else if (is_number(ch))
+    {
+      tok.token = INT;
+      tok.literal = read_number();
+      return tok;
+    }
+    {
+      tok = new_token(ILLEGAL, ch);
+    }
   }
 
   read_char();
@@ -63,4 +106,29 @@ token new_token(token_type type, char ch)
   std::string literal(1, ch);
   token tok = {type, literal};
   return tok;
+}
+
+inline bool is_letter(char c)
+{
+  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
+}
+
+inline bool is_number(char c)
+{
+  return c >= '0' && c <= '9';
+}
+
+inline bool is_whitespace(char c)
+{
+  return c == ' ' || c == '\n' || c == '\t' || c == '\r';
+}
+
+token_type lookup_ident(token_literal &literal)
+{
+  if (literal == "let")
+    return LET;
+  if (literal == "fn")
+    return FUNCTION;
+
+  return IDENT;
 }
