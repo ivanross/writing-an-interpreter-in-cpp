@@ -110,7 +110,7 @@ token lexer::next_token()
     tok = new_token(RBRACE, ch);
     break;
   case 0:
-    tok.token = EOF;
+    tok.token = END_OF_FILE;
     tok.literal = "";
     break;
   default:

@@ -98,11 +98,13 @@ int main()
       {NOT_EQ, "!="},
       {INT, "9"},
       {SEMICOLON, ";"},
+
+      {END_OF_FILE, ""},
   };
 
   lexer l = build_lexer(input);
 
-  for (int i = 0; i < 73; i++)
+  for (int i = 0; i < 74; i++)
   {
     token expected = out[i];
     token tok = l.next_token();
