@@ -67,11 +67,32 @@ int main()
       {INT, "5"},
       {SEMICOLON, ";"},
 
+      {IF, "if"},
+      {LPAREN, "("},
+      {INT, "5"},
+      {LT, "<"},
+      {INT, "10"},
+      {RPAREN, ")"},
+      {LBRACE, "{"},
+
+      {RETURN, "return"},
+      {TRUE, "true"},
+      {SEMICOLON, ";"},
+
+      {RBRACE, "}"},
+      {ELSE, "else"},
+      {LBRACE, "{"},
+
+      {RETURN, "return"},
+      {FALSE, "false"},
+      {SEMICOLON, ";"},
+
+      {RBRACE, "}"},
   };
 
   lexer l = build_lexer(input);
 
-  for (int i = 0; i < 48; i++)
+  for (int i = 0; i < 65; i++)
   {
     token expected = out[i];
     token tok = l.next_token();

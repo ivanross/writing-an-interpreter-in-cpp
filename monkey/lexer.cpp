@@ -147,6 +147,16 @@ token_type lookup_ident(token_literal &literal)
     return LET;
   if (literal == "fn")
     return FUNCTION;
+  if (literal == "if")
+    return IF;
+  if (literal == "else")
+    return ELSE;
+  if (literal == "return")
+    return RETURN;
+  if (literal == "true")
+    return TRUE;
+  if (literal == "false")
+    return FALSE;
 
   return IDENT;
 }

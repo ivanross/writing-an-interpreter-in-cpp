@@ -42,5 +42,10 @@ const token_type RBRACE = "}";
 // Keywords
 const token_type FUNCTION = "FUNCTION";
 const token_type LET = "LET";
+const token_type IF = "IF";
+const token_type ELSE = "ELSE";
+const token_type RETURN = "RETURN";
+const token_type TRUE = "TRUE";
+const token_type FALSE = "FALSE";
 
 #endif // _MONKEY_TOKEN
