@@ -88,11 +88,21 @@ int main()
       {SEMICOLON, ";"},
 
       {RBRACE, "}"},
+
+      {INT, "10"},
+      {EQ, "=="},
+      {INT, "10"},
+      {SEMICOLON, ";"},
+
+      {INT, "10"},
+      {NOT_EQ, "!="},
+      {INT, "9"},
+      {SEMICOLON, ";"},
   };
 
   lexer l = build_lexer(input);
 
-  for (int i = 0; i < 65; i++)
+  for (int i = 0; i < 73; i++)
   {
     token expected = out[i];
     token tok = l.next_token();

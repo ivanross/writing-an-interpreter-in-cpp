@@ -29,6 +29,8 @@ const token_type ASTERISK = "*";
 
 const token_type LT = "<";
 const token_type GT = ">";
+const token_type EQ = "==";
+const token_type NOT_EQ = "!=";
 
 // Delimiters
 const token_type COMMA = ",";

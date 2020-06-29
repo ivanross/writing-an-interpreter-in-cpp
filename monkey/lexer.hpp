@@ -12,6 +12,7 @@ struct lexer
   char ch;
 
   void read_char();
+  char peak_char();
   void skip_whitespace();
   token_literal read_identifier();
   token_literal read_number();

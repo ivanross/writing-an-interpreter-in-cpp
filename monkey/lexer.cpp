@@ -8,6 +8,13 @@ void lexer::read_char()
   position = read_position++;
 }
 
+char lexer::peak_char()
+{
+  if (read_position >= input.length())
+    return 0;
+  return input.at(read_position);
+}
+
 void lexer::skip_whitespace()
 {
   while (is_whitespace(ch))
@@ -43,7 +50,16 @@ token lexer::next_token()
   switch (ch)
   {
   case '=':
-    tok = new_token(ASSIGN, ch);
+    if (peak_char() == '=')
+    {
+      read_char();
+      tok.literal = "==";
+      tok.token = EQ;
+    }
+    else
+    {
+      tok = new_token(ASSIGN, ch);
+    }
     break;
   case '+':
     tok = new_token(PLUS, ch);
@@ -58,7 +74,16 @@ token lexer::next_token()
     tok = new_token(SLASH, ch);
     break;
   case '!':
-    tok = new_token(BANG, ch);
+    if (peak_char() == '=')
+    {
+      read_char();
+      tok.literal = "!=";
+      tok.token = NOT_EQ;
+    }
+    else
+    {
+      tok = new_token(BANG, ch);
+    }
     break;
   case '<':
     tok = new_token(LT, ch);
